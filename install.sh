@@ -76,7 +76,7 @@ dd_display_progress () {
     if expr "${DD_VERSION}" '>=' "8.25" >/dev/null 2>&1 ; then
         local OPTS="status=progress bs=1M"
         echo dd if="$1" of="$2" $OPTS
-        dd if="$1" of="$2" "$OPTS" &
+        dd if="$1" of="$2" $OPTS &
         local PID="$!"
     else
         echo dd if="$1" of="$2" bs=1M
@@ -137,8 +137,6 @@ main () {
     sync
     sync
     sleep 3
-    eject $disk
-    sleep 1
     eject $disk
     # udisksctl power-off -b $disk
 }
